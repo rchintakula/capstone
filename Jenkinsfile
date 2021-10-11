@@ -26,8 +26,6 @@ pipeline {
          }
          stage('Deploying') {
               steps{
-                  echo 'Deploying to AWS...'
-                  withAWS(credentials: 'aws', region: 'eu-west-2') {
                       sh "aws eks --region eu-west-2 update-kubeconfig --name cluster"
                       sh "kubectl config use-context arn:aws:eks:eu-west-2:042518807383:cluster/cluster"
                       sh "kubectl get svc"
@@ -37,7 +35,6 @@ pipeline {
                       sh "kubectl get deployment"
                       sh "kubectl get pod -o wide"
                       sh "kubectl get service/capstone-project-cloud-devops"
-                  }
               }
         }
         stage("Cleaning up") {
