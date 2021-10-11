@@ -30,6 +30,7 @@ pipeline {
                   withAWS(credentials: 'aws', region: 'eu-west-2') {
                       sh "aws eks --region eu-west-2 update-kubeconfig --name cluster"
                       sh "kubectl config use-context arn:aws:eks:eu-west-2:042518807383:cluster/cluster"
+                      sh "kubectl get svc"
                     //   sh "kubectl set image deployments/capstone-project-cloud-devops capstone-project-cloud-devops=rchintakula/capstone-project-cloud-devops:latest"
                       sh "kubectl apply -f deployment/deployment.yml"
                       sh "kubectl get nodes"
