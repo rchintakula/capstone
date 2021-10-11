@@ -29,7 +29,7 @@ pipeline {
                   echo 'Deploying to AWS...'
                   withAWS(credentials: 'aws', region: 'eu-west-2') {
                       sh "aws eks --region eu-west-2 update-kubeconfig --name cluster"
-                      sh "curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl""
+                      sh 'curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"'
                       sh "chmod u+x ./kubectl"
                       sh "kubectl config use-context arn:aws:eks:eu-west-2:042518807383:cluster/cluster"
                       sh "kubectl set image deployments/capstone-project-cloud-devops capstone-project-cloud-devops=rchintakula/capstone-project-cloud-devops:latest"
