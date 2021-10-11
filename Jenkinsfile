@@ -18,7 +18,7 @@ pipeline {
          }
          stage('Push Docker Image') {
               steps {
-                  withDockerRegistry([url: "", credentialsId: "docker-hub"]) {
+                  withDockerRegistry([url: "", credentialsId: "rchintakula"]) {
                       sh "docker tag capstone-project-cloud-devops rchintakula/capstone-project-cloud-devops"
                       sh 'docker push rchintakula/capstone-project-cloud-devops'
                   }
